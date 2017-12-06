@@ -1,0 +1,14 @@
+version: '3'
+services:
+  web:
+    image: "nginx"
+    restart: always
+    ports:
+      - "8080:80"
+    links:
+      - "akka: hello-akka"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./static/:/usr/share/nginx/html/static/
+  app:
+      image: "dataroot/hello-akka:latest"
